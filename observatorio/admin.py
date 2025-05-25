@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Categoria, Informe, ConsultaUsuario
+
+admin.site.register(Categoria)
+admin.site.register(Informe)
+admin.site.register(ConsultaUsuario)
