@@ -1,0 +1,21 @@
+{% extends 'observatorio/base.html' %}
+
+{% block content %}
+  <h2>Informes cargados</h2>
+
+  {% if informes %}
+    <ul>
+      {% for informe in informes %}
+        <li>
+          <strong>{{ informe.titulo }}</strong> ({{ informe.fecha }})<br>
+          <em>{{ informe.categoria }}</em><br>
+          <p>{{ informe.resumen }}</p>
+          <hr>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay informes cargados aún.</p>
+  {% endif %}
+{% endblock %}
+

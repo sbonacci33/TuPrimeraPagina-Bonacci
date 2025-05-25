@@ -1,0 +1,27 @@
+{% extends 'observatorio/base.html' %}
+
+{% block content %}
+  <h2>Buscar informes</h2>
+
+  <form method="get">
+      <input type="text" name="termino" placeholder="Buscar por título..." value="{{ termino }}">
+      <button type="submit">Buscar</button>
+  </form>
+
+  {% if resultados %}
+    <h3>Resultados:</h3>
+    <ul>
+      {% for informe in resultados %}
+        <li>
+          <strong>{{ informe.titulo }}</strong> ({{ informe.fecha }})<br>
+          <em>{{ informe.categoria }}</em><br>
+          <p>{{ informe.resumen }}</p>
+          <hr>
+        </li>
+      {% endfor %}
+    </ul>
+  {% elif termino %}
+    <p>No se encontraron resultados para "{{ termino }}".</p>
+  {% endif %}
+{% endblock %}
+
