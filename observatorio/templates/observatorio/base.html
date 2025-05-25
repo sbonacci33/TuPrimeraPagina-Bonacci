@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Síntesis Estratégica</title>
+</head>
+<body>
+    <header>
+        <h1>Síntesis Estratégica</h1>
+        <p><em>Comunicación basada en datos</em></p>
+        <nav>
+            <a href="{% url 'home' %}">Inicio</a> |
+            <a href="{% url 'crear_informe' %}">Crear informe</a> |
+            <a href="{% url 'listar_informes' %}">Ver informes</a> |
+            <a href="{% url 'buscar_informes' %}">Buscar</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>© 2025 - Síntesis Estratégica | Santiago Bonacci</p>
+    </footer>
+</body>
+</html>
