@@ -9,7 +9,7 @@ class CategoriaForm(forms.ModelForm):
 class InformeForm(forms.ModelForm):
     class Meta:
         model = Informe
-        fields = '__all__'
+        exclude = ['fuente', 'fecha'] 
 
 class ConsultaUsuarioForm(forms.ModelForm):
     class Meta:

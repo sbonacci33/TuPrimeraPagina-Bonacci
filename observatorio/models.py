@@ -12,8 +12,7 @@ class Informe(models.Model):
     resumen = models.TextField()
     contenido = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    fuente = models.URLField(blank=True)
-    fecha = models.DateField()
+    fecha = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.titulo

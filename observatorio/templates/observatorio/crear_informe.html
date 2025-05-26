@@ -1,10 +1,20 @@
 {% extends 'observatorio/base.html' %}
 
 {% block content %}
-  <h2>Cargar nuevo informe</h2>
-  <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Guardar</button>
-  </form>
+<div class="container my-5">
+    <h2 class="text-center mb-3">Cargar nuevo informe</h2>
+    <p class="text-center text-muted mb-4">Completá los siguientes campos para agregar un nuevo informe al Observatorio</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" class="border p-4 rounded shadow-sm bg-light">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success">Guardar informe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

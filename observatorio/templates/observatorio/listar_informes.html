@@ -1,21 +1,21 @@
 {% extends 'observatorio/base.html' %}
-
 {% block content %}
-  <h2>Informes cargados</h2>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Informes cargados</h2>
 
-  {% if informes %}
-    <ul>
-      {% for informe in informes %}
-        <li>
-          <strong>{{ informe.titulo }}</strong> ({{ informe.fecha }})<br>
-          <em>{{ informe.categoria }}</em><br>
-          <p>{{ informe.resumen }}</p>
-          <hr>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No hay informes cargados aún.</p>
-  {% endif %}
+    {% if informes %}
+        <div class="list-group">
+            {% for informe in informes %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ informe.titulo }}</h5>
+                    <small class="text-muted">{{ informe.fecha }}</small><br>
+                    <span class="badge bg-secondary mb-2">{{ informe.categoria }}</span>
+                    <p class="mb-1">{{ informe.resumen }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No hay informes cargados aún.</p>
+    {% endif %}
+</div>
 {% endblock %}
-

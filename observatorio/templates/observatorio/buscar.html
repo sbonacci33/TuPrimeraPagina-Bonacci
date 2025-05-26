@@ -1,27 +1,27 @@
 {% extends 'observatorio/base.html' %}
-
 {% block content %}
-  <h2>Buscar informes</h2>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Buscar informes</h2>
 
-  <form method="get">
-      <input type="text" name="termino" placeholder="Buscar por título..." value="{{ termino }}">
-      <button type="submit">Buscar</button>
-  </form>
+    <form method="get" class="d-flex justify-content-center mb-4">
+        <input type="text" name="termino" class="form-control w-50 me-2" placeholder="Buscar por título..." value="{{ termino }}">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
 
-  {% if resultados %}
-    <h3>Resultados:</h3>
-    <ul>
-      {% for informe in resultados %}
-        <li>
-          <strong>{{ informe.titulo }}</strong> ({{ informe.fecha }})<br>
-          <em>{{ informe.categoria }}</em><br>
-          <p>{{ informe.resumen }}</p>
-          <hr>
-        </li>
-      {% endfor %}
-    </ul>
-  {% elif termino %}
-    <p>No se encontraron resultados para "{{ termino }}".</p>
-  {% endif %}
+    {% if resultados %}
+        <h4 class="mb-3">Resultados para: <em>{{ termino }}</em></h4>
+        <div class="list-group">
+            {% for informe in resultados %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ informe.titulo }}</h5>
+                    <small class="text-muted">{{ informe.fecha }}</small><br>
+                    <span class="badge bg-secondary mb-2">{{ informe.categoria }}</span>
+                    <p class="mb-1">{{ informe.resumen }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% elif termino %}
+        <p class="text-center text-muted">No se encontraron resultados para "{{ termino }}".</p>
+    {% endif %}
+</div>
 {% endblock %}
-
