@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Informe, Categoria, ConsultaUsuario
-from .forms import InformeForm, CategoriaForm, ConsultaUsuarioForm
+from .forms import InformeForm
+from django.contrib import messages
+
 
 def home(request):
     return render(request, 'observatorio/home.html')
@@ -10,7 +12,8 @@ def crear_informe(request):
         form = InformeForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'observatorio/informe_creado.html')
+            messages.success(request, '✅ Informe guardado con éxito.')
+            return redirect('crear_informe')  # Redirige a la misma vista
     else:
         form = InformeForm()
     return render(request, 'observatorio/crear_informe.html', {'form': form})
