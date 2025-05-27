@@ -11,14 +11,19 @@
     {% if resultados %}
         <h4 class="mb-3">Resultados para: <em>{{ termino }}</em></h4>
         <div class="list-group">
-            {% for informe in resultados %}
-                <div class="list-group-item">
-                    <h5 class="mb-1">{{ informe.titulo }}</h5>
-                    <small class="text-muted">{{ informe.fecha }}</small><br>
-                    <span class="badge bg-secondary mb-2">{{ informe.categoria }}</span>
-                    <p class="mb-1">{{ informe.resumen }}</p>
-                </div>
-            {% endfor %}
+        {% for informe in resultados %}
+            <div class="list-group-item">
+                <h5 class="mb-1">
+                    <a href="{% url 'detalle_informe' informe.id %}">
+                        {{ informe.titulo }}
+                    </a>
+                </h5>
+                <small class="text-muted">{{ informe.fecha }}</small><br>
+                <span class="badge bg-secondary mb-2">{{ informe.categoria }}</span>
+                <p class="mb-1">{{ informe.resumen }}</p>
+            </div>
+        {% endfor %}
+
         </div>
     {% elif termino %}
         <p class="text-center text-muted">No se encontraron resultados para "{{ termino }}".</p>

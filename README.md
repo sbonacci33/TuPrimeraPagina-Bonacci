@@ -16,6 +16,8 @@ En esta primera versión, se implementó:
 - Formulario de suscripción con validación
 - Interfaz simple, clara y responsiva (con Bootstrap)
 
+Este desarrollo fue acompañado por herramientas de inteligencia artificial como ChatGPT, tanto en la asistencia técnica como en la generación de contenido preliminar (informes de prueba). Además, se diseñó un logo simple en Photoshop como primer paso hacia una identidad visual.
+
 ---
 
 ## 🎯 Objetivos de esta entrega
@@ -66,12 +68,12 @@ La búsqueda se realiza desde la barra superior y permite filtrar informes por *
 
 Este portal es una base funcional con proyección de crecimiento. Entre las mejoras pensadas:
 
-- Autenticación y registro de usuarios colaboradores.
+- Autenticación y registro de usuarios colaboradores aceptados por la compañía.
 - Agregado de comentarios en informes.
 - Editor enriquecido para los textos.
 - Paginación de resultados.
-- Integración con IA para responder consultas.
 - Mejora visual completa con estilo profesional personalizado.
+- Integración de IA para responder consultas de los usuarios.
 
 ---
 
