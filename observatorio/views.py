@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Informe, Categoria, ConsultaUsuario
 from .forms import InformeForm, SuscriptorForm
 from django.contrib import messages
+from django.db.models import Q
 
 
 def home(request):
@@ -28,14 +29,14 @@ def buscar_informes(request):
     if request.method == 'GET':
         termino = request.GET.get('termino', '')
         if termino:
-            from django.db.models import Q
             resultados = Informe.objects.filter(
                 Q(titulo__icontains=termino) |
-                Q(resumen__icontains=termino)
+                Q(resumen__icontains=termino) |
+                Q(autor__icontains=termino)
             )
 
 
-            # Guardamos la búsqueda
+            # Guarda la búsqueda
             ConsultaUsuario.objects.create(termino_buscado=termino)
 
     return render(request, 'observatorio/buscar.html', {'resultados': resultados, 'termino': termino})

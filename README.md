@@ -53,7 +53,7 @@ Una vez el proyecto esté corriendo (`python manage.py runserver`):
 1. **Inicio** → Página principal.
 2. **Ver Informes** → Muestra los informes cargados.
 3. **Cargar Informe** → Formulario para cargar un nuevo informe.
-4. **Buscar** → Campo para buscar por título o resumen.
+4. **Buscar** → Campo para buscar por título, resumen o autor.
 5. **Suscribirse** → Formulario con validación para recibir novedades.
 
 ---
