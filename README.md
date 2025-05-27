@@ -1,35 +1,108 @@
-# Síntesis Estratégica 3 - Python Coderhouse Flex - Comisión 69550
+# TuPrimeraPagina-Bonacci
 
-# Observatorio de Contenidos Digitales
+Este proyecto es una web realizada con Django como parte de una entrega académica. La aplicación se llama **Observatorio de Contenidos Digitales** y permite gestionar informes, categorías, suscripciones de usuarios y búsquedas, siguiendo el patrón **MVT (Model-View-Template)**.
 
-Este proyecto fue desarrollado como parte de la preentrega 3 del curso de Python/Django.
+---
 
-## ¿Qué es?
+## ✔️ Funcionalidades incluidas
 
-Una aplicación web que permite:
-- Registrar informes con título, resumen, contenido, categoría, fuente y fecha
-- Listar todos los informes cargados
-- Buscar informes por palabra clave
-- Registrar consultas realizadas por usuarios
+- **Herencia de plantillas HTML**
+- **3 modelos en base de datos** (`Informe`, `Categoria`, `Suscriptor`)
+- **Formularios** para cargar cada uno de los modelos
+- **Formulario de búsqueda** de informes (filtra por título y resumen)
+- **Suscripción a newsletter** mediante email verificado
+- **Diseño responsive** con Bootstrap
+- **Visual personalizable** (con logo, imagen de fondo, paleta de colores institucional)
 
-## Tecnologías utilizadas
-- Python 3
-- Django 5.2
-- HTML5 + Templates con herencia
-- Git + GitHub
+---
 
-## Estructura del sitio
-- `/` → Página de inicio
-- `/crear/` → Formulario para cargar nuevos informes
-- `/informes/` → Lista de todos los informes
-- `/buscar/` → Búsqueda por título
+## 📁 Estructura de carpetas
 
-## Cómo probarlo (orden sugerido)
-- Entrar a `/crear/` y cargar al menos un informe
-- Ir a `/informes/` para ver que se listan
-- Probar `/buscar/` con alguna palabra clave del título
-- Revisar `/admin/` (con el superusuario creado) para ver los modelos
+```
+observatorio/
+    models.py
+    views.py
+    forms.py
+    urls.py
+    templates/
+        observatorio/
+            base.html
+            home.html
+            crear_informe.html
+            listar_informes.html
+            buscar.html
+            suscribirse.html
+            detalle_informe.html
+    static/
+        css/
+        js/
+        images/
+```
 
-## Estado del proyecto
-- Funcional completo para la preentrega  
-- A implementar próximamente: diseño visual y despliegue online
+---
+
+## 🔍 Cómo probar la web
+
+1. Cloná este repositorio:
+
+```bash
+git clone https://github.com/sbonacci33/TuPrimeraPagina-Bonacci.git
+cd TuPrimeraPagina-Bonacci
+```
+
+2. Activá el entorno virtual (si ya lo tenés creado):
+
+```bash
+.env\Scriptsctivate
+```
+
+3. Si no tenés uno, crealo:
+
+```bash
+python -m venv venv
+.env\Scriptsctivate
+pip install -r requirements.txt
+```
+
+4. Aplicá migraciones:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+5. Iniciá el servidor:
+
+```bash
+python manage.py runserver
+```
+
+---
+
+## 🧪 Qué funcionalidades probar
+
+1. **Home** – Ver bienvenida con diseño personalizado
+2. **Cargar informe** – Formulario para ingresar un nuevo informe
+3. **Ver informes** – Lista de informes con título, resumen, autor, categoría
+4. **Buscar informes** – Filtra por título o resumen
+5. **Suscribirse** – Formulario con validación de correo electrónico
+6. **Detalle del informe** – Al hacer clic sobre un informe
+
+---
+
+## ℹ️ Info adicional
+
+- El campo `Autor` de los informes fue agregado recientemente. Si tenés errores, podés borrar los informes previos desde el panel admin.
+- En próximas versiones se incluirá registro y login para usuarios autorizados a subir contenido.
+
+---
+
+## 📅 Fecha de entrega
+
+27/05/2025
+
+---
+
+## 👤 Autor
+
+Santiago Bonacci – Observatorio de Contenidos Digitales
