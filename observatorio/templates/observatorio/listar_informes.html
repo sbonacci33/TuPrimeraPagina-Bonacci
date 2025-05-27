@@ -10,7 +10,9 @@
                     <h5 class="mb-1">{{ informe.titulo }}</h5>
                     <small class="text-muted">{{ informe.fecha }}</small><br>
                     <span class="badge bg-secondary mb-2">{{ informe.categoria }}</span>
+                    <p class="mb-1"><strong>Autor:</strong> {{ informe.autor }}</p>
                     <p class="mb-1">{{ informe.resumen }}</p>
+                    <a href="{% url 'detalle_informe' informe.id %}" class="btn btn-primary btn-sm mt-2">Ver informe</a>
                 </div>
             {% endfor %}
         </div>

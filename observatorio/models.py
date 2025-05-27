@@ -9,6 +9,7 @@ class Categoria(models.Model):
     
 class Informe(models.Model):
     titulo = models.CharField(max_length=200)
+    autor = models.CharField(max_length=100)
     resumen = models.TextField()
     contenido = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
@@ -23,3 +24,13 @@ class ConsultaUsuario(models.Model):
 
     def __str__(self):
         return self.termino_buscado
+
+class Suscriptor(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    fecha_suscripcion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} ({self.email})"
+

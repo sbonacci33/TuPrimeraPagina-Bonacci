@@ -2,18 +2,11 @@
 
 {% block content %}
   <div class="container mt-5">
+    <h2 class="text-center mb-4">Suscribite a nuestro boletín</h2>
+    <p class="text-center text-muted mb-4">
+      Recibí los informes y novedades del Observatorio directamente en tu correo.
+    </p>
 
-    <!-- ✅ Bloque de introducción primero -->
-    <div class="mb-4 text-center">
-      <h2>Cargar nuevo informe</h2>
-      <p class="text-muted">
-        Este formulario está destinado a usuarios autorizados.  
-        En futuras versiones se habilitará el acceso con cuenta para colaboradores registrados.
-      </p>
-      <p>Completá los siguientes campos para agregar un nuevo informe al Observatorio</p>
-    </div>
-
-    <!-- ✅ Formulario -->
     <div class="card shadow-sm">
       <div class="card-body">
         <form method="post">
@@ -27,8 +20,9 @@
               {% endif %}
             </div>
           {% endfor %}
+
           <button type="submit" class="btn btn-primary">
-            <i class="bi bi-upload"></i> Guardar
+            <i class="bi bi-envelope-check"></i> Suscribirme
           </button>
         </form>
       </div>
