@@ -14,6 +14,7 @@ En esta primera versión, se implementó:
 - Listado de informes publicados
 - Búsqueda de informes por título y resumen
 - Formulario de suscripción con validación
+- Edición y eliminación de informes desde su detalle
 - Interfaz simple, clara y responsiva (con Bootstrap)
 
 Este desarrollo fue acompañado por herramientas de inteligencia artificial como ChatGPT, tanto en la asistencia técnica como en la generación de contenido preliminar (informes de prueba). Además, se diseñó un logo simple en Photoshop como primer paso hacia una identidad visual.
@@ -55,6 +56,7 @@ Una vez el proyecto esté corriendo (`python manage.py runserver`):
 3. **Cargar Informe** → Formulario para cargar un nuevo informe.
 4. **Buscar** → Campo para buscar por título, resumen o autor.
 5. **Suscribirse** → Formulario con validación para recibir novedades.
+6. **Editar/Eliminar** → Desde el detalle de un informe podés modificarlo o borrarlo.
 
 ---
 

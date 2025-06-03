@@ -1,0 +1,17 @@
+{% extends 'observatorio/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">Eliminar informe</h2>
+    <p class="text-center">¿Estás seguro de que querés eliminar "{{ informe.titulo }}"?</p>
+    <div class="d-flex justify-content-center">
+      <form method="post" class="me-2">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+          <i class="bi bi-trash"></i> Eliminar
+        </button>
+      </form>
+      <a href="{% url 'detalle_informe' informe.id %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </div>
+{% endblock %}

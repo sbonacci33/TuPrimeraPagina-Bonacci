@@ -55,3 +55,24 @@ def suscribirse(request):
 def detalle_informe(request, informe_id):
     informe = get_object_or_404(Informe, id=informe_id)
     return render(request, 'observatorio/detalle_informe.html', {'informe': informe})
+
+def editar_informe(request, informe_id):
+    informe = get_object_or_404(Informe, id=informe_id)
+    if request.method == 'POST':
+        form = InformeForm(request.POST, instance=informe)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '✅ Informe actualizado con éxito.')
+            return redirect('detalle_informe', informe_id=informe.id)
+    else:
+        form = InformeForm(instance=informe)
+    return render(request, 'observatorio/editar_informe.html', {'form': form, 'informe': informe})
+
+
+def eliminar_informe(request, informe_id):
+    informe = get_object_or_404(Informe, id=informe_id)
+    if request.method == 'POST':
+        informe.delete()
+        messages.success(request, '✅ Informe eliminado.')
+        return redirect('listar_informes')
+    return render(request, 'observatorio/eliminar_informe.html', {'informe': informe})
