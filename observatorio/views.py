@@ -8,6 +8,11 @@ from django.db.models import Q
 def home(request):
     return render(request, 'observatorio/home.html')
 
+
+def about(request):
+    """Muestra información general del sitio."""
+    return render(request, 'observatorio/about.html')
+
 def crear_informe(request):
     if request.method == 'POST':
         form = InformeForm(request.POST)
