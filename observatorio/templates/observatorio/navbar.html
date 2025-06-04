@@ -16,7 +16,11 @@
         <li class="nav-item"><a class="nav-link" href="{% url 'crear_informe' %}">Cargar Informe</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'buscar_informes' %}">Buscar</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'suscribirse' %}">Suscribirse</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'admin:login' %}">Login</a></li>
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
