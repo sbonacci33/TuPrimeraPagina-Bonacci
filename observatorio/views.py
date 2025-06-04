@@ -7,6 +7,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def home(request):
@@ -17,7 +18,7 @@ def about(request):
     """Muestra información general del sitio."""
     return render(request, 'observatorio/about.html')
 
-@login_required(login_url='login')
+@login_required(login_url='registro_usuario')
 @user_passes_test(lambda u: u.is_staff)
 def crear_informe(request):
     if request.method == 'POST':
@@ -30,7 +31,7 @@ def crear_informe(request):
         form = InformeForm()
     return render(request, 'observatorio/crear_informe.html', {'form': form})
 
-@login_required(login_url='login')
+@login_required(login_url='registro_usuario')
 def listar_informes(request):
     informes = Informe.objects.all().order_by('-fecha')
     return render(request, 'observatorio/listar_informes.html', {'informes': informes})
@@ -64,7 +65,7 @@ def suscribirse(request):
         form = SuscriptorForm()
     return render(request, 'observatorio/suscribirse.html', {'form': form})
 
-@login_required(login_url='login')
+@login_required(login_url='registro_usuario')
 def detalle_informe(request, informe_id):
     informe = get_object_or_404(Informe, id=informe_id)
     comentarios = informe.comentarios.all().order_by('-fecha')
@@ -85,7 +86,7 @@ def detalle_informe(request, informe_id):
         'form': form,
     })
 
-@login_required(login_url='login')
+@login_required(login_url='registro_usuario')
 def editar_informe(request, informe_id):
     informe = get_object_or_404(Informe, id=informe_id)
     if request.method == 'POST':
@@ -99,7 +100,7 @@ def editar_informe(request, informe_id):
     return render(request, 'observatorio/editar_informe.html', {'form': form, 'informe': informe})
 
 
-@login_required(login_url='login')
+@login_required(login_url='registro_usuario')
 def eliminar_informe(request, informe_id):
     informe = get_object_or_404(Informe, id=informe_id)
     if request.method == 'POST':
@@ -120,12 +121,28 @@ def logout_usuario(request):
 
 
 def registro_usuario(request):
+    """Muestra un formulario combinado para registro e inicio de sesión."""
+
     if request.method == 'POST':
-        form = RegistroUsuarioForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            auth_login(request, user)
-            return redirect('listar_informes')
+        if 'login_submit' in request.POST:
+            login_form = AuthenticationForm(request, data=request.POST)
+            reg_form = RegistroUsuarioForm()
+            if login_form.is_valid():
+                auth_login(request, login_form.get_user())
+                return redirect('listar_informes')
+        else:
+            reg_form = RegistroUsuarioForm(request.POST)
+            login_form = AuthenticationForm()
+            if reg_form.is_valid():
+                user = reg_form.save()
+                auth_login(request, user)
+                return redirect('listar_informes')
     else:
-        form = RegistroUsuarioForm()
-    return render(request, 'observatorio/registro.html', {'form': form})
+        reg_form = RegistroUsuarioForm()
+        login_form = AuthenticationForm()
+
+    context = {
+        'reg_form': reg_form,
+        'login_form': login_form,
+    }
+    return render(request, 'observatorio/iniciar_sesion.html', context)

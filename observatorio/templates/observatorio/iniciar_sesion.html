@@ -1,0 +1,21 @@
+{% extends 'observatorio/base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <h2>Iniciar sesión</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ login_form.as_p }}
+      <button type="submit" name="login_submit" class="btn btn-primary">Ingresar</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h2>Registrarse</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ reg_form.as_p }}
+      <button type="submit" name="registro_submit" class="btn btn-success">Registrarme</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
