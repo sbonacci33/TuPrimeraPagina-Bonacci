@@ -12,6 +12,6 @@ urlpatterns = [
     path('informe/<int:informe_id>/editar/', views.editar_informe, name='editar_informe'),
     path('informe/<int:informe_id>/eliminar/', views.eliminar_informe, name='eliminar_informe'),
     path('login/', views.UsuarioLoginView.as_view(), name='login'),
-    path('logout/', views.UsuarioLogoutView.as_view(), name='logout'),
+    path('logout/', views.logout_usuario, name='logout_usuario'),
     path('registro/', views.registro_usuario, name='registro_usuario'),
 ]

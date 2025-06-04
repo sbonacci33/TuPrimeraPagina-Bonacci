@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Categoria, Informe, ConsultaUsuario, Suscriptor, Perfil
+from .models import Categoria, Informe, ConsultaUsuario, Suscriptor, Perfil, Comentario
 
 class CategoriaForm(forms.ModelForm):
     class Meta:
@@ -59,5 +59,14 @@ class RegistroUsuarioForm(UserCreationForm):
         dni = self.cleaned_data['dni']
         Perfil.objects.create(user=user, dni=dni)
         return user
+
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['texto']
+        widgets = {
+            'texto': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Escribí tu comentario...'}),
+        }
 
 
