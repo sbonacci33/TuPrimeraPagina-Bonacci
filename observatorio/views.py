@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Informe, Categoria, ConsultaUsuario
-from .forms import InformeForm, SuscriptorForm, RegistroUsuarioForm
+from .forms import InformeForm, SuscriptorForm, RegistroUsuarioForm, ComentarioForm
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout as auth_logout
 
 
 def home(request):
@@ -17,6 +18,7 @@ def about(request):
     return render(request, 'observatorio/about.html')
 
 @login_required(login_url='login')
+@user_passes_test(lambda u: u.is_staff)
 def crear_informe(request):
     if request.method == 'POST':
         form = InformeForm(request.POST)
@@ -65,7 +67,23 @@ def suscribirse(request):
 @login_required(login_url='login')
 def detalle_informe(request, informe_id):
     informe = get_object_or_404(Informe, id=informe_id)
-    return render(request, 'observatorio/detalle_informe.html', {'informe': informe})
+    comentarios = informe.comentarios.all().order_by('-fecha')
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.informe = informe
+            comentario.autor = request.user
+            comentario.save()
+            messages.success(request, 'Comentario agregado.')
+            return redirect('detalle_informe', informe_id=informe.id)
+    else:
+        form = ComentarioForm()
+    return render(request, 'observatorio/detalle_informe.html', {
+        'informe': informe,
+        'comentarios': comentarios,
+        'form': form,
+    })
 
 @login_required(login_url='login')
 def editar_informe(request, informe_id):
@@ -95,8 +113,10 @@ class UsuarioLoginView(LoginView):
     template_name = 'observatorio/login.html'
 
 
-class UsuarioLogoutView(LogoutView):
-    next_page = 'home'
+def logout_usuario(request):
+    """Cierra la sesión actual y redirige al inicio."""
+    auth_logout(request)
+    return redirect('home')
 
 
 def registro_usuario(request):

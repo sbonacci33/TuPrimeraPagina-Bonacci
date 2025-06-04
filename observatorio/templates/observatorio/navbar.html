@@ -17,9 +17,10 @@
         <li class="nav-item"><a class="nav-link" href="{% url 'buscar_informes' %}">Buscar</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'suscribirse' %}">Suscribirse</a></li>
         {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'logout_usuario' %}">Cerrar sesión</a></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Logearse</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'registro_usuario' %}">Registrarse</a></li>
         {% endif %}
       </ul>
     </div>
